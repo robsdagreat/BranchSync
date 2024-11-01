@@ -1,0 +1,43 @@
+{
+  "name": "BranchSync",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "repository": "https://github.com/robsdagreat/BranchSync.git",
+  "author": "@Robs_dagreat <robsrwibutso12@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "seed": "node --loader ts-node/esm src/Scripts/seeds.ts"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript": "^4.1.0",
+    "@graphql-codegen/typescript-resolvers": "^4.3.0",
+    "@graphql-tools/schema": "^10.0.7",
+    "@swc/cli": "^0.5.0",
+    "@swc/core": "^1.7.42",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.9",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.21.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "apollo-server-express": "^3.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "graphql": "^16.9.0"
+  }
+}

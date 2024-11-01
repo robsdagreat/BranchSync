@@ -1,0 +1,72 @@
+type Query {
+    warehouses: [Warehouse!]!
+    warehouse(id: ID!): Warehouse
+    products: [Product!]!
+    product(id:ID!): Product
+    inventory(warehouseId: ID!, productId: ID!): Inventory
+}
+
+type Mutation {
+    createWarehouse(input: CreateWarehouseInput!): Warehouse!
+    createProduct(input: CreateProductInput!): Product!
+    updateInventory(input: updateInventoryInput!): Inventory!
+}
+
+type Warehouse {
+    id: ID!
+    name: String!
+    location: String!
+    capacity: Int!
+    inventory: [Inventory!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    description: String!
+    inventory: [Inventory!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type Inventory {
+    id: ID! 
+    warehouse: Warehouse!
+    product: Product!
+    quantity: Int!
+    minStock: Int!
+    maxStock: Int!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+input CreateWarehouseInput {
+  name: String!
+  location: String!
+  capacity: Int!
+}
+
+input CreateProductInput {
+    name: String!
+    location: String!
+    capacity: Int!
+}
+
+input CreateProductInput {
+    name: String!
+    description: String!
+}
+
+input updateInventoryInput {
+    warehouseId: ID!
+    productId: ID!
+    quantity: Int!
+    minStock: Int!
+    maxStock: Int!
+}
+
+scalar DateTime
+
+
