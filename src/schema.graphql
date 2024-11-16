@@ -4,12 +4,84 @@ type Query {
     products: [Product!]!
     product(id:ID!): Product
     inventory(warehouseId: ID!, productId: ID!): Inventory
+    inventoryById(id:ID!): Inventory
+    users: [User!]!
+    user(id: ID!): User
+    me: User
+    warehouseUsers(warehouseId: ID!): [WarehouseUser!]!
 }
 
 type Mutation {
     createWarehouse(input: CreateWarehouseInput!): Warehouse!
     createProduct(input: CreateProductInput!): Product!
     updateInventory(input: updateInventoryInput!): Inventory!
+    createUser(input: CreateUserInput!): User!
+    updateUser(id: ID!, input: UpdateUserInput!): User!
+    deleteUser(id: ID!): User!
+    addUserToWarehouse(input: AddUserToWarehouseInput!): WarehouseUser!
+    updateWarehouseUserPermissions(input: UpdateWarehouseUserPermissionsInput!): WarehouseUser!
+    removeUserFromWarehouse(userId: ID!, warehouseId: ID!): WarehouseUser!
+    login(email: String!, password: String!): AuthPayload!
+}
+
+type User {
+    id: ID!
+    email: String!
+    role: Role!
+    password: String!
+    warehouses: [WarehouseUser!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type WarehouseUser {
+    id: ID!
+    user: User!
+    warehouse: Warehouse!
+    permissions: [Permission!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
+}
+
+enum Role {
+    ADMIN
+    USER
+}
+
+enum Permission {
+    CREATE
+    READ
+    UPDATE
+    DELETE
+}
+
+input CreateUserInput {
+    email: String!
+    password: String!
+    role: Role
+}
+
+input UpdateUserInput {
+    email: String
+    password: String
+    role: Role
+}
+
+input AddUserToWarehouseInput {
+    userId: ID!
+    warehouseId: ID!
+    permissions: [Permission!]!
+}
+
+input UpdateWarehouseUserPermissionsInput {
+    userId: ID!
+    warehouseId: ID!
+    permissions: [Permission!]!
 }
 
 type Warehouse {
@@ -46,12 +118,6 @@ input CreateWarehouseInput {
   name: String!
   location: String!
   capacity: Int!
-}
-
-input CreateProductInput {
-    name: String!
-    location: String!
-    capacity: Int!
 }
 
 input CreateProductInput {
