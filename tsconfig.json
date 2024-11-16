@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "lib": ["ES2022"],
     "strict": true,
-    "rootDir": "src",
+    "rootDir": "src", 
     "outDir": "dist",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,8 +13,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tsconfig-paths.js"],
   "exclude": ["node_modules", "dist"]
 }

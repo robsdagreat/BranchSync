@@ -6,6 +6,7 @@ import { dirname, join } from 'path';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import { resolvers } from './resolvers/index.js';
+import { createContext } from './context/index.js';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -33,7 +34,7 @@ const start = async() =>{
     const server = new ApolloServer ({
         typeDefs,
         resolvers,
-        context: {prisma}
+        context: createContext
     });
 
     await server.start();

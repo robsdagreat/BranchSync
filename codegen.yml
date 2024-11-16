@@ -9,6 +9,13 @@ generates:
     config:
       contextType: "../types#Context"
       mappers:
-        Warehouse: "@prisma/client#Warehouse"
-        Product: "@prisma/client#Product"
-        Inventory: "@prisma/client#Inventory"
+        Warehouse: ".prisma/client#Warehouse"
+        Product: ".prisma/client#Product"
+        Inventory: ".prisma/client#Inventory"
+        User: ".prisma/client#User"
+        WarehouseUser: ".prisma/client#WarehouseUser"
+      enumValues:
+        Role: ".prisma/client#Role"
+        Permission: ".prisma/client#Permission"
+      scalars:
+        DateTime: Date
